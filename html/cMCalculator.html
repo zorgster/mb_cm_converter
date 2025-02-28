@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genetic Distance Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Genetic Distance Calculator</h1>
+        <form id="calculator-form">
+            <select id="chromosome" required>
+                <option value="">Select Chromosome</option>
+                <!-- Options for chr1 to chr22 will be populated by JavaScript -->
+            </select>
+            <input type="number" id="start" placeholder="Start Position" required>
+            <input type="number" id="end" placeholder="End Position" required>
+            <select id="parent" required>
+                <option value="mat">Maternal</option>
+                <option value="pat">Paternal</option>
+            </select>
+            <button type="submit">Calculate cM</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
