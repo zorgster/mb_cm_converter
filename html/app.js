@@ -15,12 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const parent = document.getElementById('parent').value;
 
         try {
-            const response = await fetch('/.netlify/functions/calculatecm', {
+            const response = await fetch('/functions/calculatecm', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({ chromosome, start, end, parent }),
             });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
             const result = await response.json();
-            document.getElementById('result').textContent = `The calculated genetic distance is ${result.cM.toFixed(4)} cM`;
+            if (!result.cM) {
+                throw new Error('Invalid response from server');
+            }
+
+            document.getElementById('result').textContent = `The calculated genetic distance is ${result.cM} cM`;
         } catch (error) {
             console.error('Error:', error);
             document.getElementById('result').textContent = 'An error occurred while calculating.';
