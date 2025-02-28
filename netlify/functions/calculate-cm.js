@@ -19,10 +19,21 @@ exports.handler = async (event) => {
   const mapFile = parent === 'mat' ? 'maps.mat.tsv' : 'maps.pat.tsv';
   const mapData = loadMapFile(mapFile);
   
-  const cM = calculateCM(chromosome, parseInt(start), parseInt(end), mapData);
+//  const cM = calculateCM(chromosome, parseInt(start), parseInt(end), mapData);
+  try {
+    const { chromosome, start, end, parent } = JSON.parse(event.body);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ cM }),
-  };
-};
+    // Example calculation, you might have your own logic
+    const geneticDistance = (end - start) * 0.01; // Example calculation
+
+      return {
+          statusCode: 200,
+          body: JSON.stringify({ cM: geneticDistance }),
+      };
+    } catch (error) {
+      return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Internal Server Error' }),
+      };
+    };
+}};
