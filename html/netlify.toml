@@ -2,5 +2,4 @@
   functions = "functions"
 
 [functions]
-directory = "functions/"
-included_files = ["functions/*.tsv"]
+included_files = ["*.tsv"]
