@@ -16,8 +16,8 @@ function calculateCM(chr, start, end, mapData) {
 exports.handler = async (event) => {
   const { chromosome, start, end, parent } = JSON.parse(event.body);
   
-  const mapFile = parent === 'mat' ? 'maps.mat.tsv' : 'maps.pat.tsv';
-  const mapData = loadMapFile(mapFile);
+//  const mapFile = parent === 'mat' ? 'maps.mat.tsv' : 'maps.pat.tsv';
+//  const mapData = loadMapFile(mapFile);
   
 //  const cM = calculateCM(chromosome, parseInt(start), parseInt(end), mapData);
   try {
