@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const parent = document.getElementById('parent').value;
 
         try {
-            const response = await fetch('/.netlify/functions/calculate-cm.js', {
+            const response = await fetch('/functions/calculate-cm.js', {
                 method: 'POST',
                 body: JSON.stringify({ chromosome, start, end, parent }),
             });
