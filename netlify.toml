@@ -1,5 +1,10 @@
 [build]
-  functions = "functions"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/functions/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
 
 [functions]
   included_files = ["*.tsv"]
