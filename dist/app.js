@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('result').textContent = `The calculated genetic distance is ${result.cM} cM`;
         } catch (error) {
             console.error('Error:', error);
-            document.getElementById('result').textContent = 'An error occurred while calculating.';
+            document.getElementById('result').textContent = 'An error occurred while calculating: ', error.message;
         }
     });
 });

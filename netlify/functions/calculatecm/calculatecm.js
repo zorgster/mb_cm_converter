@@ -42,9 +42,10 @@ exports.handler = async (event, context) => {
           body: JSON.stringify({ cM: geneticDistance }),
       };
     } catch (error) {
+      console.error('Error in Handler:', error);
       return {
           statusCode: 500,
-          body: JSON.stringify({ error: 'Internal Server Error' }),
+          body: JSON.stringify({ error: error.message }),
       };
     };
 };
