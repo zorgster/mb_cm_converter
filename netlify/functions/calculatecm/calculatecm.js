@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
       throw new Error('The segment has zero length');
     }
 
-    if (start > end) {
+    if (parseInt(start) > parseInt(end)) {
       throw new Error('The Start is after the End');
     }
 
@@ -47,5 +47,5 @@ exports.handler = async (event, context) => {
           statusCode: 500,
           body: JSON.stringify({ error: error.message }),
       };
-    };
+    }
 };
