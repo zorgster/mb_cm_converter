@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const parent = document.getElementById('parent').value;
 
         try {
-            const response = await fetch('.netlify/functions/calculatecm', {
+            const response = await fetch(`${process.env.NETLIFY_URL}.netlify/functions/calculatecm`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
