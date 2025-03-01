@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 document.addEventListener('DOMContentLoaded', () => {
     const chromosomeSelect = document.getElementById('chromosome');
     for (let i = 1; i <= 22; i++) {
