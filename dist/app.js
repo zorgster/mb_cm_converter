@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 document.addEventListener('DOMContentLoaded', () => {
     const chromosomeSelect = document.getElementById('chromosome');
     for (let i = 1; i <= 22; i++) {
@@ -17,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const parent = document.getElementById('parent').value;
 
         try {
-            const response = await fetch(`${process.env.NETLIFY_URL}.netlify/functions/calculatecm`, {
+            const response = await fetch(`https://mb-cm-converter.netlify.app/.netlify/functions/calculatecm`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
