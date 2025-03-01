@@ -13,16 +13,27 @@ function calculateCM(chr, start, end, mapData) {
   // Use the mapData and segment information to calculate cM
 }
 
-exports.handler = async (event) => {
-  const { chromosome, start, end, parent } = JSON.parse(event.body);
-  
-//  const mapFile = parent === 'mat' ? 'maps.mat.tsv' : 'maps.pat.tsv';
-//  const mapData = loadMapFile(mapFile);
-  
-//  const cM = calculateCM(chromosome, parseInt(start), parseInt(end), mapData);
+exports.handler = async (event, context) => {
   try {
     const { chromosome, start, end, parent } = JSON.parse(event.body);
 
+    if (!chromosome || !start || !end || !parent) {
+      throw new Error('Missing required fields');
+    }
+
+    if (start == end) {
+      throw new Error('The segment has zero length');
+    }
+
+    if (start > end) {
+      throw new Error('The Start is after the End');
+    }
+
+    const mapFile = parent === 'mat' ? 'maps.mat.tsv' : 'maps.pat.tsv';
+    const mapData = loadMapFile(mapFile);
+    
+    const cM = calculateCM(chromosome, parseInt(start), parseInt(end), mapData);
+  
     // Example calculation, you might have your own logic
     const geneticDistance = (end - start) * 0.01; // Example calculation
 
