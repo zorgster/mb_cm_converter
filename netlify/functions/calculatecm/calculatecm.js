@@ -1,9 +1,8 @@
-const fs = require('fs');
 const path = require('path');
 
 function loadMapFile(filename) {
-  const filePath = path.join(__dirname, filename);
-  const fileContent = fs.readFileSync(filePath, 'utf8');
+//  const filePath = path.join(__dirname, filename);
+//  const fileContent = fs.readFileSync(filePath, 'utf8');
   // Parse the TSV file content and return as an object
   // Implementation depends on your TSV structure
 }
@@ -51,6 +50,7 @@ exports.handler = async (event, context) => {
     const filePath = path.resolve(__dirname, `../maps.${parent}.tsv`);
 
     // Read the TSV file
+    const fs = require('fs').promises;
     const fileContent = await fs.readFile(filePath, 'utf-8');
 
     // Parse the TSV content, skipping comment lines and filtering by chromosome
