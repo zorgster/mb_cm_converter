@@ -18,15 +18,33 @@ exports.handler = async (event, context) => {
     const { chromosome, start, end, parent } = JSON.parse(event.body);
 
     if (!chromosome || !start || !end || !parent) {
-      throw new Error('Missing required fields');
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ 
+            error: "Missing required fields", 
+            details: "Ensure chromosome, start, end, and parent are provided." 
+        }),
+      };
     }
 
     if (start == end) {
-      throw new Error('The segment has zero length');
+      return {
+        statusCode: 422,
+        body: JSON.stringify({ 
+            error: "The segment has zero length", 
+            details: "Start value should not be the same as End" 
+        }),
+      };
     }
 
     if (parseInt(start) > parseInt(end)) {
-      throw new Error('The Start is after the End');
+      return {
+        statusCode: 422,
+        body: JSON.stringify({ 
+            error: "The Start is after the End", 
+            details: "Start should be lower than End" 
+        }),
+      };
     }
 
     const mapFile = parent === 'mat' ? 'maps.mat.tsv' : 'maps.pat.tsv';
