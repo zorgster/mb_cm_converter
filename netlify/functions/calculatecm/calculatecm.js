@@ -61,7 +61,7 @@ exports.handler = async (event, context) => {
                 return false; // Skip empty or comment lines
             }
 
-            const [chr, pos, cmPerMb] = line.split('\t');
+            const [chr, pos] = line.split('\t');
             if (chr != chromosome) {
               return false;
             }
@@ -79,7 +79,7 @@ exports.handler = async (event, context) => {
             );
         })
         .map(line => {
-            const [chr, pos, cmPerMb] = line.split('\t');
+            const [chr, pos, , cmPerMb] = line.split('\t');
             const intervalPos = parseInt(pos, 10);
     
             // Define interval boundaries
