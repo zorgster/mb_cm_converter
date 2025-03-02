@@ -102,7 +102,7 @@ exports.handler = async (event, context) => {
         .filter(cm => cm > 0); // Exclude rows that contribute 0 to the total
     
     // Sum the total cM
-    const totalCM = rows.reduce((acc, cm) => acc + cm, 0);
+    const totalCM = rows.reduce((acc, cm) => acc + cm, 0).toFixed(3);
 
     // const cM = calculateCM(chromosome, parseInt(start), parseInt(end), rows);
   
