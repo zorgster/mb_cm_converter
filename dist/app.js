@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await response.json();
+                throw new Error(`${errorData.error}: ${errorData.details}`); // Combine custom error fields
+                //                 throw new Error(errorData.error || "Unknown error");
             }
 
             const result = await response.json();
@@ -34,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('result').textContent = `The calculated genetic distance is ${result.cM} cM`;
         } catch (error) {
-            console.error('Error:', error);
-            document.getElementById('result').textContent = 'An error occurred while calculating: ', error.message;
+            console.error('Error:', error.message);
+            document.getElementById('result').textContent = `Error: ${error.message}`;
         }
     });
 });
