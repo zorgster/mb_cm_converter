@@ -47,7 +47,7 @@ exports.handler = async (event, context) => {
     }
 
     // Determine the correct TSV file path
-    const filePath = path.resolve(__dirname, `../maps.${parent}.tsv`);
+    const filePath = path.resolve(__dirname, `./maps.${parent}.tsv`);
 
     // Read the TSV file
     const fs = require('fs').promises;
